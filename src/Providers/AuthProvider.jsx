@@ -13,14 +13,14 @@ import {
 import { createContext, useEffect, useState } from "react";
 import app from "../firebase/firebase.config";
 
-const AuthContext = createContext(null);
+export const AuthContext = createContext(null);
 const auth = getAuth(app);
 
 // social log in providers
 const googleProvider = new GoogleAuthProvider();
 const githubProvider = new GithubAuthProvider();
 const AuthProvider = ({ children }) => {
-  const [user, setuser] = useState();
+  const [user, setUser] = useState();
   const [loading, setLoading] = useState();
 
   // sign up
@@ -64,11 +64,12 @@ const AuthProvider = ({ children }) => {
   //   user state managemnet
   useEffect(() => {
     const unSubscribe = onAuthStateChanged(auth, (currentUser) => {
-      setuser(currentUser);
+      setUser(currentUser);
       setLoading(false);
     });
     return () => unSubscribe();
   }, []);
+
   const authInfo = {
     user,
     loading,

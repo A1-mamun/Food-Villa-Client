@@ -1,6 +1,14 @@
 import { Link, NavLink } from "react-router-dom";
+import { AuthContext } from "../../../Providers/AuthProvider";
+import { useContext } from "react";
 
 const Navbar = () => {
+  const { user, logOut } = useContext(AuthContext);
+
+  const handleSignOut = () => {
+    logOut().then().catch();
+  };
+
   const navlinks = (
     <>
       <NavLink
@@ -93,7 +101,7 @@ const Navbar = () => {
           <ul className="menu menu-horizontal px-1 gap-5 ">{navlinks}</ul>
         </div>
         <div className="navbar-end">
-          {/* {user && (
+          {user && (
             <div className=" tooltip mr-4" data-tip={user.displayName}>
               <img
                 className="btn btn-sm md:btn-md btn-circle"
@@ -101,8 +109,8 @@ const Navbar = () => {
                 src={user.photoURL}
               />
             </div>
-          )} */}
-          {/* {user ? (
+          )}
+          {user ? (
             <button
               onClick={handleSignOut}
               className="btn btn-sm md:btn-md btn-success"
@@ -122,7 +130,7 @@ const Navbar = () => {
                 </button>
               </Link>
             </>
-          )} */}
+          )}
         </div>
       </div>
     </div>
