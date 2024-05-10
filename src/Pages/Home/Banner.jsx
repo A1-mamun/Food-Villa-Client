@@ -13,7 +13,7 @@ import { Link } from "react-router-dom";
 
 const Banner = () => {
   return (
-    <section className="dark:bg-gray-100 dark:text-gray-800 mt-16 ">
+    <section className=" mt-16 ">
       <div className="container flex flex-col justify-center items-center  mx-auto  lg:flex-row lg:justify-between  h-[650px]">
         <div className="flex flex-col justify-center  text-center rounded-sm lg:max-w-md xl:max-w-lg lg:text-left ">
           <h1 className="text-5xl font-bold leading-none sm:text-6xl">
@@ -26,11 +26,8 @@ const Banner = () => {
             seassonal global cuisine driven by the faire
           </p>
           <div className="flex flex-col space-y-4 sm:items-center sm:justify-center sm:flex-row sm:space-y-0 sm:space-x-4 lg:justify-start">
-            <Link
-              to="/all-food"
-              className="px-8 py-3 text-lg font-semibold rounded dark:bg-violet-600 dark:text-gray-50"
-            >
-              See All
+            <Link to="/all-food">
+              <button className="btn btn-primary">See All</button>
             </Link>
           </div>
         </div>

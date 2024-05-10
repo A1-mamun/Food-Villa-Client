@@ -6,7 +6,7 @@ const Navbar = () => {
       <NavLink
         to="/"
         className={({ isActive }) =>
-          isActive ? "text-violet-600 font-semibold" : " "
+          isActive ? "text-primary font-semibold" : " "
         }
       >
         Home
@@ -15,7 +15,7 @@ const Navbar = () => {
       <NavLink
         to="/all-food"
         className={({ isActive }) =>
-          isActive ? "text-violet-600 font-semibold" : " "
+          isActive ? "text-primary font-semibold" : " "
         }
       >
         All Food
@@ -24,7 +24,7 @@ const Navbar = () => {
       <NavLink
         to="/gallery"
         className={({ isActive }) =>
-          isActive ? "text-violet-600 font-semibold" : " "
+          isActive ? "text-primary font-semibold" : " "
         }
       >
         Gallery
@@ -32,7 +32,7 @@ const Navbar = () => {
       <NavLink
         to="/add-food"
         className={({ isActive }) =>
-          isActive ? "text-violet-600 font-semibold" : " "
+          isActive ? "text-primary font-semibold" : " "
         }
       >
         Add Food Item
@@ -41,7 +41,7 @@ const Navbar = () => {
       <NavLink
         to="/my-added-food"
         className={({ isActive }) =>
-          isActive ? "text-violet-600 font-semibold" : " "
+          isActive ? "text-primary font-semibold" : " "
         }
       >
         My Added Food
@@ -49,7 +49,7 @@ const Navbar = () => {
       <NavLink
         to="/my-purchase-food"
         className={({ isActive }) =>
-          isActive ? "text-violet-600 font-semibold" : " "
+          isActive ? "text-primary font-semibold" : " "
         }
       >
         My Purchase Food
@@ -86,7 +86,7 @@ const Navbar = () => {
             </ul>
           </div>
           <a className="btn btn-ghost gap-0 text-3xl ml-[-10px] text-black dark:text-gray-400">
-            Food<span className="text-violet-600">Villa</span>
+            Food<span className="text-primary">Villa</span>
           </a>
         </div>
         <div className="navbar-center hidden lg:flex">
