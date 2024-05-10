@@ -102,7 +102,10 @@ const Navbar = () => {
         </div>
         <div className="navbar-end">
           {user && (
-            <div className=" tooltip mr-4" data-tip={user.displayName}>
+            <div
+              className="tooltip tooltip-left mr-4"
+              data-tip={user.displayName}
+            >
               <img
                 className="btn btn-sm md:btn-md btn-circle"
                 alt="Profile picture"

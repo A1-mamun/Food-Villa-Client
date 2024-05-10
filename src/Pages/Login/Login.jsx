@@ -10,7 +10,7 @@ const Login = () => {
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
   const [showPassword, setShowPassword] = useState(false);
-  const { signIn, signInGoogle, singInGithub } = useContext(AuthContext);
+  const { signIn, signInGoogle, signInGithub } = useContext(AuthContext);
 
   const location = useLocation();
   const navigate = useNavigate();
@@ -58,7 +58,7 @@ const Login = () => {
   // Github sign in
   const handleLogInWithGithub = (e) => {
     e.preventDefault();
-    singInGithub()
+    signInGithub()
       .then((result) => {
         console.log(result.user);
         setSuccess("Logged in successfully");
