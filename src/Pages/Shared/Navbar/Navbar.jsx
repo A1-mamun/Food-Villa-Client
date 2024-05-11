@@ -100,17 +100,36 @@ const Navbar = () => {
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal px-1 gap-5 ">{navlinks}</ul>
         </div>
-        <div className="navbar-end">
+        <div className="navbar-end ">
           {user && (
-            <div
-              className="tooltip tooltip-left mr-4"
-              data-tip={user.displayName}
-            >
-              <img
-                className="btn btn-sm md:btn-md btn-circle"
-                alt="Profile picture"
-                src={user.photoURL}
-              />
+            <div className="dropdown dropdown-end mr-4 ">
+              <div
+                tabIndex={0}
+                role="button"
+                className="btn btn-ghost btn-circle avatar tooltip tooltip-left flex items-center"
+                data-tip={user.displayName}
+              >
+                <div className="rounded-full w-10">
+                  <img alt="profile" src={user.photoURL} />
+                </div>
+              </div>
+              <ul
+                tabIndex={0}
+                className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52"
+              >
+                <Link to="/profile">
+                  <a>Profile</a>
+                </Link>
+                <Link to="/my-added-food">
+                  <a>My added food items</a>
+                </Link>
+                <Link to="/add-food">
+                  <a>Add a food item</a>
+                </Link>
+                <Link to="/my-ordered-food">
+                  <a>My ordered food items</a>
+                </Link>
+              </ul>
             </div>
           )}
           {user ? (
@@ -129,7 +148,7 @@ const Navbar = () => {
               </Link>
               <Link to="/register">
                 <button className="btn btn-sm md:btn-md btn-accent  ml-2">
-                  Register
+                  SignUp
                 </button>
               </Link>
             </>
