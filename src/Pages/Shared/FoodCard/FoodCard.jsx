@@ -18,7 +18,7 @@ const FoodCard = ({ food }) => {
         </div>
         <div className="flex items-center justify-between">
           <p>Price: {price}</p>
-          <Link to="/food-details">
+          <Link to="/single-food">
             <button className="btn  btn-primary btn-sm">Details</button>
           </Link>
         </div>
