@@ -41,7 +41,7 @@ const SingleFood = () => {
               <h2 className=" text-2xl text-green-500 font-bold">{made_by}</h2>
             </div>
 
-            <Link to="/purchase-food">
+            <Link to={`/purchase-food/${_id}`}>
               <button className="btn btn-accent">Purchase</button>
             </Link>
           </div>

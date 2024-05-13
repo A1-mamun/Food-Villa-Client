@@ -115,7 +115,7 @@ const Navbar = () => {
                 </Link>
                 <Link to="/my-ordered-food">
                   <li>
-                    <a>My ordered food items</a>
+                    <a>My purchased food items</a>
                   </li>
                 </Link>
               </ul>
