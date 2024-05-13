@@ -6,14 +6,12 @@ import MyFoodCard from "./MyFoodCard";
 const MyAddedFood = () => {
   const { user } = useContext(AuthContext);
   const [myFoods, setMyFoods] = useState([]);
-  console.log(user);
   useEffect(() => {
     const getData = async () => {
-      const food = await axios(
+      const { data } = await axios(
         `${import.meta.env.VITE_API_URL}/myFood/${user?.email}`
       );
-      console.log(food);
-      // setMyFoods(data);
+      setMyFoods(data);
     };
     getData();
   }, [user]);

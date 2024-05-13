@@ -1,3 +1,5 @@
+import PropTypes from "prop-types";
+
 const MyFoodCard = ({ food }) => {
   const { image, name, category, price, purchase_count, quantity } = food;
 
@@ -28,4 +30,7 @@ const MyFoodCard = ({ food }) => {
   );
 };
 
+MyFoodCard.propTypes = {
+  food: PropTypes.object,
+};
 export default MyFoodCard;

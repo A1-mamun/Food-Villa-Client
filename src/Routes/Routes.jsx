@@ -7,6 +7,7 @@ import Login from "../Pages/Login/Login";
 import Register from "../Pages/Register/Register";
 import SingleFood from "../Pages/SingleFood/SingleFood";
 import MyAddedFood from "../Pages/MyAddedFood/MyAddedFood";
+import PurchaseFood from "../Pages/PurchaseFood/PurchaseFood";
 
 const router = createBrowserRouter([
   {
@@ -31,12 +32,18 @@ const router = createBrowserRouter([
         element: <Register></Register>,
       },
       {
-        path: "/single-food",
+        path: "/single-food/:id",
         element: <SingleFood></SingleFood>,
+        loader: ({ params }) =>
+          fetch(`${import.meta.env.VITE_API_URL}/single-food/${params.id}`),
       },
       {
         path: "/my-added-food",
         element: <MyAddedFood></MyAddedFood>,
+      },
+      {
+        path: "/purchase-food",
+        element: <PurchaseFood></PurchaseFood>,
       },
     ],
   },
