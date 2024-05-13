@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 
 const FoodCard = ({ food }) => {
-  const { image, name, category, price } = food;
+  const { image, name, category, price, purchase_count } = food;
   return (
     <div className="rounded-lg shadow-md dark:bg-gray-50 dark:text-gray-900">
       <img
@@ -18,6 +18,7 @@ const FoodCard = ({ food }) => {
         </div>
         <div className="flex items-center justify-between">
           <p>Price: {price}</p>
+          <p>count: {purchase_count}</p>
           <Link to="/single-food">
             <button className="btn  btn-primary btn-sm">Details</button>
           </Link>

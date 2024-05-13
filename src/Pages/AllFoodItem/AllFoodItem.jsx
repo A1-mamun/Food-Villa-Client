@@ -2,17 +2,20 @@ import { useEffect, useState } from "react";
 import bgImage from "../../assets/bg-img-1.jpg";
 import FoodCard from "../Shared/FoodCard/FoodCard";
 import { Link } from "react-router-dom";
+import axios from "axios";
 
 const AllFoodItem = () => {
   const [foods, setFoods] = useState([]);
 
   useEffect(() => {
-    fetch("Food.json")
-      .then((res) => res.json())
-      .then((data) => {
-        setFoods(data);
-      });
+    const getData = async () => {
+      const { data } = await axios(`${import.meta.env.VITE_API_URL}/foods`);
+      setFoods(data);
+    };
+    getData();
   }, []);
+
+  // console.log(foods);
   return (
     <div className="mt-32 container mx-auto">
       <div
@@ -29,7 +32,7 @@ const AllFoodItem = () => {
         </div>
       </div>
       <div className="my-14 container mx-auto text-center">
-        <h2 className="text-4xl font-bold mb-14">Top Food Items</h2>
+        <h2 className="text-4xl font-bold mb-14">All Food Items</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-10">
           {foods.map((food) => (
             <FoodCard key={food._id} food={food}></FoodCard>

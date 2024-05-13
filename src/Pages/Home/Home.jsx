@@ -2,17 +2,17 @@ import { useEffect, useState } from "react";
 import Banner from "./Banner";
 import FoodCard from "../Shared/FoodCard/FoodCard";
 import { Link } from "react-router-dom";
+import axios from "axios";
 
 const Home = () => {
   const [foods, setFoods] = useState([]);
 
   useEffect(() => {
-    fetch("Food.json")
-      .then((res) => res.json())
-      .then((data) => {
-        const slicesData = data.slice(0, 6);
-        setFoods(slicesData);
-      });
+    const getData = async () => {
+      const { data } = await axios(`${import.meta.env.VITE_API_URL}/top-foods`);
+      setFoods(data);
+    };
+    getData();
   }, []);
   return (
     <div>

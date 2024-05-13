@@ -14,7 +14,9 @@ const Navbar = () => {
       <NavLink
         to="/"
         className={({ isActive }) =>
-          isActive ? "text-primary font-semibold" : " "
+          isActive
+            ? "text-primary font-semibold border border-primary rounded-md p-1"
+            : "p-1"
         }
       >
         Home
@@ -23,7 +25,9 @@ const Navbar = () => {
       <NavLink
         to="/all-food"
         className={({ isActive }) =>
-          isActive ? "text-primary font-semibold" : " "
+          isActive
+            ? "text-primary font-semibold border border-primary rounded-md p-1"
+            : "p-1 "
         }
       >
         All Food
@@ -32,35 +36,12 @@ const Navbar = () => {
       <NavLink
         to="/gallery"
         className={({ isActive }) =>
-          isActive ? "text-primary font-semibold" : " "
+          isActive
+            ? "text-primary font-semibold border border-primary rounded-md p-1"
+            : "p-1 "
         }
       >
         Gallery
-      </NavLink>
-      <NavLink
-        to="/add-food"
-        className={({ isActive }) =>
-          isActive ? "text-primary font-semibold" : " "
-        }
-      >
-        Add Food Item
-      </NavLink>
-
-      <NavLink
-        to="/my-added-food"
-        className={({ isActive }) =>
-          isActive ? "text-primary font-semibold" : " "
-        }
-      >
-        My Added Food
-      </NavLink>
-      <NavLink
-        to="/my-purchase-food"
-        className={({ isActive }) =>
-          isActive ? "text-primary font-semibold" : " "
-        }
-      >
-        My Purchase Food
       </NavLink>
     </>
   );
@@ -118,16 +99,24 @@ const Navbar = () => {
                 className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52"
               >
                 <Link to="/profile">
-                  <a>Profile</a>
+                  <li>
+                    <a>Profile</a>
+                  </li>
                 </Link>
                 <Link to="/my-added-food">
-                  <a>My added food items</a>
+                  <li>
+                    <a>My added food items</a>
+                  </li>
                 </Link>
                 <Link to="/add-food">
-                  <a>Add a food item</a>
+                  <li>
+                    <a>Add a food item</a>
+                  </li>
                 </Link>
                 <Link to="/my-ordered-food">
-                  <a>My ordered food items</a>
+                  <li>
+                    <a>My ordered food items</a>
+                  </li>
                 </Link>
               </ul>
             </div>
