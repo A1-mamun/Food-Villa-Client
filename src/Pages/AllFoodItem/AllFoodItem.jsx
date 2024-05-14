@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import bgImage from "../../assets/bg-img-1.jpg";
 import FoodCard from "../Shared/FoodCard/FoodCard";
-import { Link } from "react-router-dom";
 import axios from "axios";
 
 const AllFoodItem = () => {

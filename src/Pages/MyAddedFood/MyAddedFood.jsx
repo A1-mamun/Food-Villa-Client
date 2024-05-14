@@ -37,8 +37,8 @@ const MyAddedFood = () => {
               <th className="p-3">Photo</th>
               <th className="p-3">Name</th>
               <th className="p-3">Category</th>
-              <th className="p-3">Quantity</th>
-              <th className="p-3">Purchased</th>
+              <th className="p-3">Remain</th>
+              <th className="p-3">Sell </th>
               <th className="p-3 text-right">Price</th>
               <th className="p-3"></th>
             </tr>

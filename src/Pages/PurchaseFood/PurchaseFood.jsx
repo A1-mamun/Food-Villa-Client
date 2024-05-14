@@ -21,6 +21,10 @@ const PurchaseFood = () => {
 
   const handlePurchase = (e) => {
     e.preventDefault();
+    if (!quantity || quantity < parseInt(e.target.quantity.value)) {
+      toast.error("Item Not available");
+      return;
+    }
     const food = {
       image,
       name,
@@ -95,10 +99,10 @@ const PurchaseFood = () => {
               </label>
               <input
                 id="quantity"
-                type="text"
+                type="number"
                 placeholder="Quantity"
-                defaultValue={quantity}
-                readOnly
+                defaultValue="1"
+                step="1"
                 className="w-full rounded-md focus:ring focus:ring-opacity-75 text-gray-500 focus:dark:ring-violet-600 dark:border-gray-300 p-3"
               />
             </div>
@@ -137,6 +141,7 @@ const PurchaseFood = () => {
                 type="text"
                 placeholder="Buyer Email"
                 defaultValue={user?.email}
+                readOnly
                 className="w-full rounded-md focus:ring focus:ring-opacity-75 text-gray-500 focus:dark:ring-violet-600 dark:border-gray-300 p-3"
               />
             </div>

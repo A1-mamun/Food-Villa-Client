@@ -19,7 +19,7 @@ const MyFoodCard = ({ food }) => {
       </td>
       <td className="p-3">{purchase_count}</td>
       <td className="p-3 text-right">
-        <p>${price}</p>
+        <p>$ {price}</p>
       </td>
       <td className="p-3 text-right">
         <span className="px-3 py-1 font-semibold rounded-md dark:bg-violet-600 dark:text-gray-50">

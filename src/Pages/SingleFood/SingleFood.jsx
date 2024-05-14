@@ -1,11 +1,21 @@
 import { Link, useLoaderData } from "react-router-dom";
 const SingleFood = () => {
   const food = useLoaderData();
-  const { _id, name, image, category, origin, price, made_by, description } =
-    food;
+  const {
+    _id,
+    name,
+    image,
+    category,
+    origin,
+    price,
+    made_by,
+    details,
+    quantity,
+    purchase_count,
+  } = food;
   return (
-    <div className="mt-28 container mx-auto  px-3 md:px-5 lg:px-0 my-10">
-      <div className="flex flex-col lg:flex-row gap-6 md:gap-10 lg:gap-16 lg:h-[600px] border border-dark-15  p-5 rounded-xl">
+    <div className="mt-28 container mx-auto  px-3 md:px-5 lg:px-0 mb-10">
+      <div className="flex flex-col lg:flex-row gap-6 md:gap-10 lg:gap-16 h-[calc(100vh-425px)] border border-dark-15  p-5 rounded-xl">
         <div className="rounded-2xl lg:w-1/2 flex justify-center items-center">
           <img
             className="rounded-xl md:h-[400px] lg:h-full"
@@ -25,8 +35,22 @@ const SingleFood = () => {
 
           <hr />
           <p className="text-sm md:text-base text-dark-7 py-3 md:py-4 lg:py-5 grow">
-            <span className="font-bold text-dark">Details :</span> {description}
+            <span className="font-bold text-dark">Details :</span> {details}
           </p>
+          <div className="flex justify-between mt-5 text-dark-8 font-medium mb-5 text-base md:text-xl">
+            <div className="flex items-center gap-1">
+              <p>
+                <span className="mr-2">AvailAble :</span> {quantity}{" "}
+                <span>pices</span>
+              </p>
+            </div>
+            <div className="flex items-center gap-2">
+              <p>
+                <span className="mr-2">Purchased :</span> {purchase_count}{" "}
+                <span>pices</span>
+              </p>
+            </div>
+          </div>
           <div className="flex justify-between mt-5 text-dark-8 font-medium mb-5 text-base md:text-xl">
             <div className="flex items-center gap-1">
               <p>{price}</p>

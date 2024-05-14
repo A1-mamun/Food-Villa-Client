@@ -1,6 +1,24 @@
-const MyPurchaseCard = ({ food }) => {
-  const { image, name, price, made_by, date, category } = food;
+import axios from "axios";
+import toast from "react-hot-toast";
 
+const MyPurchaseCard = ({ food, myPurchase, setMyPurchase }) => {
+  const { _id, image, name, price, made_by, date, category } = food;
+
+  const handleDelete = (id) => {
+    axios
+      .delete(`${import.meta.env.VITE_API_URL}/delete/${id}`)
+      .then((res) => {
+        console.log(res.data);
+        if (res.data?.deletedCount) {
+          toast.success("Item deleted successfully");
+          const remaining = myPurchase.filter(
+            (purchase) => purchase._id !== id
+          );
+          setMyPurchase(remaining);
+        }
+      })
+      .catch((err) => toast.error(err?.message));
+  };
   return (
     <tr className="border-b border-opacity-20 dark:border-gray-300 dark:bg-gray-50">
       <td className="p-1">
@@ -20,8 +38,11 @@ const MyPurchaseCard = ({ food }) => {
         <p>${price}</p>
       </td>
       <td className="p-3 text-right">
-        <span className="px-3 py-1 font-semibold rounded-md dark:bg-error dark:text-gray-50">
-          <span>Delete</span>
+        <span
+          onClick={() => handleDelete(_id)}
+          className="btn btn-error btn-sm"
+        >
+          <span className="">Delete</span>
         </span>
       </td>
     </tr>

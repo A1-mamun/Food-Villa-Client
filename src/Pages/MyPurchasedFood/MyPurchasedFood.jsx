@@ -6,7 +6,6 @@ import MyPurchaseCard from "./MyPurchaseCard";
 const MyPurchasedFood = () => {
   const { user } = useContext(AuthContext);
   const [myPurchase, setMyPurchase] = useState([]);
-  console.log(user);
   useEffect(() => {
     const getData = async () => {
       const { data } = await axios(
@@ -44,7 +43,12 @@ const MyPurchasedFood = () => {
           </thead>
           <tbody>
             {myPurchase.map((food) => (
-              <MyPurchaseCard key={food._id} food={food}></MyPurchaseCard>
+              <MyPurchaseCard
+                key={food._id}
+                food={food}
+                myPurchase={myPurchase}
+                setMyPurchase={setMyPurchase}
+              ></MyPurchaseCard>
             ))}
           </tbody>
         </table>
