@@ -1,22 +1,21 @@
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../Providers/AuthProvider";
 import axios from "axios";
-import MyFoodCard from "./MyFoodCard";
+import MyPurchaseCard from "./MyPurchaseCard";
 
-const MyAddedFood = () => {
+const MyPurchasedFood = () => {
   const { user } = useContext(AuthContext);
-  const [myFoods, setMyFoods] = useState([]);
+  const [myPurchase, setMyPurchase] = useState([]);
   console.log(user);
   useEffect(() => {
     const getData = async () => {
       const { data } = await axios(
-        `${import.meta.env.VITE_API_URL}/myFood/${user?.email}`
+        `${import.meta.env.VITE_API_URL}/myPurchasedFood/${user?.email}`
       );
-      setMyFoods(data);
+      setMyPurchase(data);
     };
     getData();
   }, [user]);
-  console.log(myFoods);
   return (
     <div className="container p-2 mx-auto sm:p-4 dark:text-gray-800 mt-20 min-h-[calc(100vh-355px)]">
       <h2 className="mb-4 text-2xl font-semibold leading-tight">
@@ -37,15 +36,15 @@ const MyAddedFood = () => {
               <th className="p-3">Photo</th>
               <th className="p-3">Name</th>
               <th className="p-3">Category</th>
-              <th className="p-3">Quantity</th>
-              <th className="p-3">Purchased</th>
+              <th className="p-3">Made By</th>
+              <th className="p-3">Purchase Date</th>
               <th className="p-3 text-right">Price</th>
               <th className="p-3"></th>
             </tr>
           </thead>
           <tbody>
-            {myFoods.map((food) => (
-              <MyFoodCard key={food._id} food={food}></MyFoodCard>
+            {myPurchase.map((food) => (
+              <MyPurchaseCard key={food._id} food={food}></MyPurchaseCard>
             ))}
           </tbody>
         </table>
@@ -54,4 +53,4 @@ const MyAddedFood = () => {
   );
 };
 
-export default MyAddedFood;
+export default MyPurchasedFood;

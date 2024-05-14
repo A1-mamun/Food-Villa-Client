@@ -3,10 +3,9 @@ import { useForm } from "react-hook-form";
 import { IoEyeOffOutline, IoEyeOutline } from "react-icons/io5";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../Providers/AuthProvider";
+import toast, { Toaster } from "react-hot-toast";
 
 const Register = () => {
-  const [error, setError] = useState("");
-  const [success, setSuccess] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const { createUser, profileUpdate } = useContext(AuthContext);
 
@@ -22,38 +21,36 @@ const Register = () => {
   const onSubmit = (data) => {
     const { name, photo, email, password } = data;
 
-    // reset error
-    setError("");
-    setSuccess("");
-
     // password validation
     if (password.length < 6) {
-      setError("password should be at least 6 characters");
+      toast.error("password should be at least 6 characters");
       return;
     } else if (!/^(?=.*[A-Z])/.test(password)) {
-      setError("password should have at least one Uppercase letter");
+      toast.error("password should have at least one Uppercase letter");
       return;
     } else if (!/^(?=.*[a-z])/.test(password)) {
-      setError("password should have at least one Lowercase letter");
+      toast.error("password should have at least one Lowercase letter");
       return;
     }
 
     // User Register
     createUser(email, password)
       .then((result) => {
+        toast.success("User created successfully");
+        // console.log("succesfully");
         profileUpdate(name, photo)
           .then(() => {
-            console.log("profile updated");
+            toast.success("profile updated successfully");
+            // console.log("profile update");
             console.log(result.user);
           })
-          .catch((error) => console.error(error));
-        setSuccess("User created Successfully");
+          .catch((error) => toast.error(error));
         navigate("/");
       })
       .catch((error) => {
         const fullError = error.message;
         const shortError = fullError.slice(22, fullError.length - 2);
-        setError(shortError);
+        toast.error(shortError);
       });
   };
   return (
@@ -132,8 +129,7 @@ const Register = () => {
               <button className="btn btn-primary">Register</button>
             </div>
           </form>
-          {error && <p className="text-red-700 text-center">{error}</p>}
-          {success && <p className="text-green text-center">{success}</p>}
+
           <h2 className="text-center pb-5">
             Already Have An Account ?
             <Link to="/login" className="text-orange-700 font-medium">

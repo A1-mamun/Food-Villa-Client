@@ -1,3 +1,4 @@
+import toast, { Toaster } from "react-hot-toast";
 import { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 import { FaGithub } from "react-icons/fa";
@@ -7,8 +8,6 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../Providers/AuthProvider";
 
 const Login = () => {
-  const [error, setError] = useState("");
-  const [success, setSuccess] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const { signIn, signInGoogle, signInGithub } = useContext(AuthContext);
 
@@ -23,36 +22,45 @@ const Login = () => {
   const onSubmit = (data) => {
     const { email, password } = data;
 
-    // reset error
-    setError("");
-    setSuccess("");
-
     // log in
     signIn(email, password)
       .then((result) => {
         console.log(result.user);
-        setSuccess("Loged in successfully");
+
         // navigate after sign in
         navigate(location?.state ? location.state : "/");
+
+        toast.success("Log in successfully");
       })
       .catch((error) => {
         const fullError = error.message;
         const shortError = fullError.slice(22, fullError.length - 2);
-        setError(shortError);
+        toast.error(shortError);
       });
   };
 
   // Google sign in
-  const handleLogInWithGoogle = (e) => {
-    e.preventDefault();
-    signInGoogle()
-      .then((result) => {
-        console.log(result.user);
-        setSuccess("Logged in successfully");
-        // navigate after sign in
-        navigate(location?.state ? location.state : "/");
-      })
-      .catch((error) => console.error(error));
+  // const handleLogInWithGoogle = (e) => {
+  //   e.preventDefault();
+  //   signInGoogle()
+  //     .then((result) => {
+  //       console.log(result.user);
+
+  //       // navigate after sign in
+  //       navigate(location?.state ? location.state : "/");
+  //       toast.success("Log in successfully");
+  //     })
+  //     .catch((error) => toast.error(error?.message));
+  // };
+
+  const handleLogInWithGoogle = async () => {
+    try {
+      await signInGoogle();
+      toast.success("successfull");
+      navigate(location?.state ? location.state : "/");
+    } catch (error) {
+      toast.error(error.message);
+    }
   };
 
   // Github sign in
@@ -61,11 +69,11 @@ const Login = () => {
     signInGithub()
       .then((result) => {
         console.log(result.user);
-        setSuccess("Logged in successfully");
         // navigate after sign in
         navigate(location?.state ? location.state : "/");
+        toast.success("Log in successfully");
       })
-      .catch((error) => console.error(error));
+      .catch((error) => toast.error(error?.message));
   };
   return (
     <div className="hero h-full bg-base-200 py-10 rounded-xl mt-16">
@@ -121,8 +129,7 @@ const Login = () => {
               <button className="btn btn-primary">Login</button>
             </div>
           </form>
-          {error && <p className="text-red-700 text-center">{error}</p>}
-          {success && <p className="text-green text-center">{success}</p>}
+
           <div className="card-body pt-2">
             <div className="flex justify-between items-center">
               <div className="border border-gray-500 h-[1px] grow"></div>

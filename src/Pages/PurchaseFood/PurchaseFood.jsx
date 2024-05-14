@@ -17,15 +17,18 @@ const PurchaseFood = () => {
   const [date, setDate] = useState(getDate());
 
   const food = useLoaderData();
-  const { _id, name, image, price, quantity } = food;
+  const { name, image, price, quantity, category, made_by } = food;
 
   const handlePurchase = (e) => {
     e.preventDefault();
     const food = {
+      image,
       name,
       price,
       quantity,
+      category,
       date,
+      made_by,
       Buyer_name: user?.displayName,
       Buyer_email: user?.email,
     };
