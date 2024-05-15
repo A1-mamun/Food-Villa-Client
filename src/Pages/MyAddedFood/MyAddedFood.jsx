@@ -25,7 +25,7 @@ const MyAddedFood = () => {
       <Helmet>
         <title>FoodVilla | My Added Foods</title>
       </Helmet>
-      <h2 className="mb-4 text-2xl font-semibold leading-tight">
+      <h2 className="mb-4 text-xl md:text-2xl lg:text-3xl font-semibold leading-tight">
         My Added Food Item
       </h2>
       <div className="overflow-x-auto">
@@ -40,13 +40,19 @@ const MyAddedFood = () => {
           </colgroup>
           <thead className="dark:bg-gray-300">
             <tr className="text-left">
-              <th className="p-3">Photo</th>
-              <th className="p-3">Name</th>
-              <th className="p-3">Category</th>
-              <th className="p-3">Available</th>
-              <th className="p-3">Purchased </th>
-              <th className="p-3 text-right">Price</th>
-              <th className="p-3"></th>
+              <th className="p-3 hidden md:block text-xs md:text-sm lg:text-base">
+                Photo
+              </th>
+              <th className="p-3 text-xs md:text-sm lg:text-base">Name</th>
+              <th className="p-3 text-xs md:text-sm lg:text-base">Category</th>
+              <th className="p-3 text-xs md:text-sm lg:text-base">Stock</th>
+              <th className="p-3 hidden md:block text-xs md:text-sm lg:text-base">
+                Sell
+              </th>
+              <th className="p-3 text-right text-xs md:text-sm lg:text-base">
+                Price
+              </th>
+              <th className="p-3 text-xs md:text-sm lg:text-base"></th>
             </tr>
           </thead>
           <tbody>

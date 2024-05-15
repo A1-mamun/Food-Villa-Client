@@ -65,24 +65,26 @@ const MyFoodCard = ({ food }) => {
 
   return (
     <tr className="border-b border-opacity-20 dark:border-gray-300 dark:bg-gray-50">
-      <td className="p-1">
-        <img className="h-16 w-20 rounded-md" src={image} alt="" />
+      <td className="p-1 hidden md:block ">
+        <img className="h-16 w-20 rounded-md " src={image} alt="" />
       </td>
-      <td className="p-3">
+      <td className="p-3 text-xs md:text-sm lg:text-base">
         <p>{name}</p>
       </td>
-      <td className="p-3">
+      <td className="p-3 text-xs md:text-sm lg:text-base">
         <p>{category}</p>
       </td>
-      <td className="p-3">
+      <td className="p-3 text-xs md:text-sm lg:text-base">
         <p>{quantity}</p>
       </td>
-      <td className="p-3">{purchase_count}</td>
-      <td className="p-3 text-right">
+      <td className="p-3 hidden md:block text-xs md:text-sm lg:text-base">
+        {purchase_count}
+      </td>
+      <td className="p-3 text-right text-xs md:text-sm lg:text-base">
         <p>$ {price}</p>
       </td>
-      <td className="p-3 text-right">
-        <span onClick={openModal} className="btn btn-sm btn-primary">
+      <td className="p-3 text-right text-xs md:text-sm lg:text-base">
+        <span onClick={openModal} className="btn btn-xs md:btn-sm btn-primary">
           <span>Update</span>
         </span>
       </td>
