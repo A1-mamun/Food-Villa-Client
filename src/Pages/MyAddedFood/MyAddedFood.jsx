@@ -6,6 +6,7 @@ import MyFoodCard from "./MyFoodCard";
 const MyAddedFood = () => {
   const { user } = useContext(AuthContext);
   const [myFoods, setMyFoods] = useState([]);
+
   console.log(user);
   useEffect(() => {
     const getData = async () => {
@@ -16,7 +17,8 @@ const MyAddedFood = () => {
     };
     getData();
   }, [user]);
-  console.log(myFoods);
+
+  // console.log(myFoods);
   return (
     <div className="container p-2 mx-auto sm:p-4 dark:text-gray-800 mt-20 min-h-[calc(100vh-355px)]">
       <h2 className="mb-4 text-2xl font-semibold leading-tight">
@@ -37,8 +39,8 @@ const MyAddedFood = () => {
               <th className="p-3">Photo</th>
               <th className="p-3">Name</th>
               <th className="p-3">Category</th>
-              <th className="p-3">Remain</th>
-              <th className="p-3">Sell </th>
+              <th className="p-3">Available</th>
+              <th className="p-3">Purchased </th>
               <th className="p-3 text-right">Price</th>
               <th className="p-3"></th>
             </tr>
