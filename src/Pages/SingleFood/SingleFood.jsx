@@ -1,3 +1,4 @@
+import { Helmet } from "react-helmet";
 import { Link, useLoaderData } from "react-router-dom";
 const SingleFood = () => {
   const food = useLoaderData();
@@ -15,6 +16,9 @@ const SingleFood = () => {
   } = food;
   return (
     <div className="mt-28 container mx-auto  px-3 md:px-5 lg:px-0 mb-10">
+      <Helmet>
+        <title>FoodVilla | Food Details</title>
+      </Helmet>
       <div className="flex flex-col lg:flex-row gap-6 md:gap-10 lg:gap-16 h-[calc(100vh-425px)] border border-dark-15  p-5 rounded-xl">
         <div className="rounded-2xl lg:w-1/2 flex justify-center items-center">
           <img

@@ -3,6 +3,7 @@ import Banner from "./Banner";
 import FoodCard from "../Shared/FoodCard/FoodCard";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import { Helmet } from "react-helmet";
 
 const Home = () => {
   const [foods, setFoods] = useState([]);
@@ -16,6 +17,9 @@ const Home = () => {
   }, []);
   return (
     <div className="px-2 md:px-4">
+      <Helmet>
+        <title>FoodVilla | Home</title>
+      </Helmet>
       <Banner></Banner>
       <div className="my-10 lg:my-14 container mx-auto text-center">
         <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-5 md:mb-8 lg:mb-14">

@@ -1,6 +1,7 @@
 import axios from "axios";
 import PropTypes from "prop-types";
 import { useState } from "react";
+import { Helmet } from "react-helmet";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import Modal from "react-modal";
@@ -93,11 +94,14 @@ const MyFoodCard = ({ food }) => {
         className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 border border-gray-400 rounded-xl"
       >
         <div className="w-[1200px] bg-gray-100 rounded-xl px-3 md:px-6 lg:px-10 py-10">
+          <Helmet>
+            <title>FoodVilla | Update Food</title>
+          </Helmet>
           <h2
             className="text-2xl md:text-3xl lg:text-4xl text-center mb-10
       "
           >
-            Add Food Item
+            Update Food Item
           </h2>
           <form onSubmit={handleSubmit(onSubmit)}>
             <div className="flex flex-col lg:flex-row gap-10 w-full my-8">

@@ -3,6 +3,7 @@ import { useLoaderData } from "react-router-dom";
 import { AuthContext } from "../../Providers/AuthProvider";
 import axios from "axios";
 import toast, { Toaster } from "react-hot-toast";
+import { Helmet } from "react-helmet";
 
 const PurchaseFood = () => {
   const { user } = useContext(AuthContext);
@@ -56,6 +57,9 @@ const PurchaseFood = () => {
 
   return (
     <section className="p-6 dark:bg-gray-100 dark:text-gray-900 mt-24 min-h-[calc(100vh-410px)] container mx-auto mb-10">
+      <Helmet>
+        <title>FoodVilla | Food Purchase</title>
+      </Helmet>
       <form
         onSubmit={handlePurchase}
         noValidate=""

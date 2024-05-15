@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import bgImage from "../../assets/bg-img-1.jpg";
 import FoodCard from "../Shared/FoodCard/FoodCard";
 import axios from "axios";
+import { Helmet } from "react-helmet";
 
 const AllFoodItem = () => {
   const [foods, setFoods] = useState([]);
@@ -17,6 +18,9 @@ const AllFoodItem = () => {
   // console.log(foods);
   return (
     <div className="mt-24 lg:mt-32  container mx-auto px-2 md:px-4 lg:px-0">
+      <Helmet>
+        <title>FoodVilla | All Foods</title>
+      </Helmet>
       <div
         className="h-[250px] md:h-[400px] lg:h-[calc(100vh-200px)] rounded-lg"
         style={{

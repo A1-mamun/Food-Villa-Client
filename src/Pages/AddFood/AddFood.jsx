@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form";
 import { AuthContext } from "../../Providers/AuthProvider";
 import axios from "axios";
 import toast from "react-hot-toast";
+import { Helmet } from "react-helmet";
 
 const AddFood = () => {
   const { user } = useContext(AuthContext);
@@ -38,7 +39,10 @@ const AddFood = () => {
       });
   };
   return (
-    <div className="container mx-auto bg-gray-100 rounded-xl px-5 md:px-8 lg:px-20 py-10 mt-28">
+    <div className="my-10 container mx-auto bg-gray-100 rounded-xl px-5 md:px-8 lg:px-20 py-10 mt-28">
+      <Helmet>
+        <title>FoodVilla | Add Food</title>
+      </Helmet>
       <h2
         className="text-2xl md:text-3xl lg:text-4xl text-center mb-10
       "

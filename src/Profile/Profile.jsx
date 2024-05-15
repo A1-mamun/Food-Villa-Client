@@ -1,11 +1,15 @@
 import { useContext } from "react";
 import { AuthContext } from "../Providers/AuthProvider";
 import { FaFacebook, FaGithub, FaLinkedin } from "react-icons/fa";
+import { Helmet } from "react-helmet";
 
 const Profile = () => {
   const { user } = useContext(AuthContext);
   return (
     <div className="min-h-[calc(100vh-275px)] flex justify-center items-center">
+      <Helmet>
+        <title>FoodVilla | User Profile</title>
+      </Helmet>
       <div className="flex flex-col justify-center max-w-xs p-6 shadow-md rounded-xl sm:px-12 dark:bg-gray-50 dark:text-gray-800 ">
         <img
           src={user?.photoURL}

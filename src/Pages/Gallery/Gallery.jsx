@@ -5,6 +5,7 @@ import GalleryCard from "./GalleryCard";
 import { useForm } from "react-hook-form";
 import Modal from "react-modal";
 import toast from "react-hot-toast";
+import { Helmet } from "react-helmet";
 
 const Gallery = () => {
   const [feedBacks, setFeedBacks] = useState([]);
@@ -53,6 +54,9 @@ const Gallery = () => {
   };
   return (
     <div className="mt-24 lg:mt-32 container mx-auto px-2 md:px-4 lg:px-0">
+      <Helmet>
+        <title>FoodVilla | Foods Gallery</title>
+      </Helmet>
       <div
         className="h-[250px] md:h-[400px] lg:h-[calc(100vh-200px)] rounded-lg"
         style={{
@@ -84,10 +88,11 @@ const Gallery = () => {
       <Modal
         isOpen={modalIsOpen}
         onRequestClose={closeModal}
-        // style={customStyles}
-        // className=" top-1/2 left-1/2 bottom-auto right-auto mr-[-50%] transition -translate-x-1/2 -translate-y-1/2"
         className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 border border-gray-400 rounded-xl"
       >
+        <Helmet>
+          <title>FoodVilla | Add Feedback</title>
+        </Helmet>
         <div className="w-[600px] bg-gray-200 rounded-xl px-5 md:px-8 lg:px-10 py-10 ">
           <h2
             className="text-2xl md:text-3xl lg:text-4xl text-center mb-10
