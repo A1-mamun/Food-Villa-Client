@@ -13,25 +13,9 @@ import { Link } from "react-router-dom";
 
 const Banner = () => {
   return (
-    <section className=" mt-16 ">
-      <div className="container flex flex-col justify-center items-center  mx-auto  lg:flex-row lg:justify-between  h-[650px]">
-        <div className="flex flex-col justify-center  text-center rounded-sm lg:max-w-md xl:max-w-lg lg:text-left ">
-          <h1 className="text-5xl font-bold leading-none sm:text-6xl">
-            Meet, Eat & Enjoy <br /> the true taste
-            {/* <span className="dark:text-violet-600">senectus</span>erat pharetra */}
-          </h1>
-          <p className="mt-6 mb-8 text-lg sm:mb-12">
-            The food places is an neighborhood restaurent serving
-            <br />
-            seassonal global cuisine driven by the faire
-          </p>
-          <div className="flex flex-col space-y-4 sm:items-center sm:justify-center sm:flex-row sm:space-y-0 sm:space-x-4 lg:justify-start">
-            <Link to="/all-food">
-              <button className="btn btn-primary">See All</button>
-            </Link>
-          </div>
-        </div>
-        <div className="h-[500px] w-[500px]  flex items-center">
+    <section className=" mt-36 md:mt-16  ">
+      <div className="container flex flex-col gsp-5 justify-center items-center  mx-auto  md:flex-row-reverse lg:justify-between h-[400px] md:h-[500px] lg:h-[650px]">
+        <div className="h-[250px] md:h-[350px] lg:h-[500px] w-[calc(100vw-20px)] md:w-1/2 lg:w-[500px]  flex items-center">
           <Swiper
             modules={[Navigation, Pagination, A11y, Autoplay]}
             spaceBetween={20}
@@ -81,6 +65,20 @@ const Banner = () => {
               />
             </SwiperSlide>
           </Swiper>
+        </div>
+        <div className="flex flex-col justify-center  text-center rounded-sm lg:max-w-md xl:max-w-lg md:text-left mt-7 ">
+          <h1 className="text-2xl md:text-3xl lg:text-5xl font-bold leading-none">
+            Meet, Eat & Enjoy <br /> the true taste
+            {/* <span className="dark:text-violet-600">senectus</span>erat pharetra */}
+          </h1>
+          <p className="mt-6 mb-8 text-sm md:text-base lg:text-lg sm:mb-12">
+            The food places is an neighborhood restaurent serving
+            <br />
+            seassonal global cuisine driven by the faire
+          </p>
+          <Link to="/all-food">
+            <button className="btn btn-sm btn-primary">See All</button>
+          </Link>
         </div>
       </div>
     </section>

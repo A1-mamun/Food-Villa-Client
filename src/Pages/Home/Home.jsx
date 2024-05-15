@@ -15,17 +15,21 @@ const Home = () => {
     getData();
   }, []);
   return (
-    <div>
+    <div className="px-2 md:px-4">
       <Banner></Banner>
-      <div className="my-14 container mx-auto text-center">
-        <h2 className="text-4xl font-bold mb-14">Top Food Items</h2>
+      <div className="my-10 lg:my-14 container mx-auto text-center">
+        <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-5 md:mb-8 lg:mb-14">
+          Top Food Items
+        </h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-10">
-          {foods.map((food) => (
+          {foods.slice(0, 8).map((food) => (
             <FoodCard key={food._id} food={food}></FoodCard>
           ))}
         </div>
         <Link to="/all-food">
-          <button className="btn btn-success mt-14">See All</button>
+          <button className="btn btn-sm btn-success mt-7 md:mt-10 lg:mt-14">
+            See All
+          </button>
         </Link>
       </div>
     </div>

@@ -1,23 +1,36 @@
 import axios from "axios";
 import toast from "react-hot-toast";
+import Swal from "sweetalert2";
 
 const MyPurchaseCard = ({ food, myPurchase, setMyPurchase }) => {
   const { _id, image, name, price, made_by, date, category } = food;
 
   const handleDelete = (id) => {
-    axios
-      .delete(`${import.meta.env.VITE_API_URL}/delete/${id}`)
-      .then((res) => {
-        console.log(res.data);
-        if (res.data?.deletedCount) {
-          toast.success("Item deleted successfully");
-          const remaining = myPurchase.filter(
-            (purchase) => purchase._id !== id
-          );
-          setMyPurchase(remaining);
-        }
-      })
-      .catch((err) => toast.error(err?.message));
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        axios
+          .delete(`${import.meta.env.VITE_API_URL}/delete/${id}`)
+          .then((res) => {
+            console.log(res.data);
+            if (res.data?.deletedCount) {
+              toast.success("Item deleted successfully");
+              const remaining = myPurchase.filter(
+                (purchase) => purchase._id !== id
+              );
+              setMyPurchase(remaining);
+            }
+          })
+          .catch((err) => toast.error(err?.message));
+      }
+    });
   };
   return (
     <tr className="border-b border-opacity-20 dark:border-gray-300 dark:bg-gray-50">

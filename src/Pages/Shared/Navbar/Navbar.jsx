@@ -74,7 +74,7 @@ const Navbar = () => {
               {navlinks}
             </ul>
           </div>
-          <a className="btn btn-ghost gap-0 text-3xl ml-[-10px] text-black dark:text-gray-400">
+          <a className="btn btn-ghost gap-0 text-xl md:text-2xl lg:text-3xl ml-[-10px] text-black">
             Food<span className="text-primary">Villa</span>
           </a>
         </div>
