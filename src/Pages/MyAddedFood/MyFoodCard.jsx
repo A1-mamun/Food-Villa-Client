@@ -93,22 +93,25 @@ const MyFoodCard = ({ food }) => {
         onRequestClose={closeModal}
         // style={customStyles}
         // className=" top-1/2 left-1/2 bottom-auto right-auto mr-[-50%] transition -translate-x-1/2 -translate-y-1/2"
-        className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 border border-gray-400 rounded-xl"
+        className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 border border-gray-400 rounded-xl mt-12 md:mt-0"
       >
-        <div className="w-[1200px] bg-gray-100 rounded-xl px-3 md:px-6 lg:px-10 py-10">
+        <div className="w-[320px] md:w-[600px] lg:w-[1200px] bg-gray-100 rounded-xl p-3 md:p-6 lg:p-10 ">
           <Helmet>
             <title>FoodVilla | Update Food</title>
           </Helmet>
           <h2
-            className="text-2xl md:text-3xl lg:text-4xl text-center mb-10
+            className="text-xl md:text-3xl lg:text-4xl text-center mb-1 md:mb-5 lg:mb-10
       "
           >
             Update Food Item
           </h2>
-          <form onSubmit={handleSubmit(onSubmit)}>
-            <div className="flex flex-col lg:flex-row gap-10 w-full my-8">
-              <div className="form-control w-full">
-                <label className="input input-bordered flex items-center gap-2 text-blue-300 text-sm md:text-base">
+          <form
+            className="space-y-3 md:space-y-5 lg:space-y-10"
+            onSubmit={handleSubmit(onSubmit)}
+          >
+            <div className="flex flex-col lg:flex-row gap-3 md:gap-5 lg:gap-10 w-full ">
+              <div className="form-control w-full hidden md:block">
+                <label className="input input-bordered flex items-center gap-2 text-blue-300 text-xs md:text-sm lg:text-base">
                   User Email :
                   <input
                     name="adder_email"
@@ -124,8 +127,8 @@ const MyFoodCard = ({ food }) => {
                   )}
                 </label>
               </div>
-              <div className="form-control w-full">
-                <label className="input input-bordered flex items-center gap-2 text-blue-300 text-sm md:text-base">
+              <div className="form-control w-full hidden md:block">
+                <label className="input input-bordered flex items-center gap-2 text-blue-300 text-xs md:text-sm lg:text-base">
                   User Name :
                   <input
                     name="adder_name"
@@ -142,9 +145,9 @@ const MyFoodCard = ({ food }) => {
                 </label>
               </div>
             </div>
-            <div className="flex flex-col lg:flex-row gap-10 w-full my-8">
+            <div className="flex flex-col lg:flex-row gap-3 md:gap-5 lg:gap-10 w-full ">
               <div className="form-control w-full">
-                <label className="input input-bordered flex items-center gap-2 text-blue-300 text-sm md:text-base">
+                <label className="input input-bordered flex items-center gap-2 text-blue-300 text-xs md:text-sm lg:text-base">
                   Food Name :
                   <input
                     name="name"
@@ -160,7 +163,7 @@ const MyFoodCard = ({ food }) => {
                 </label>
               </div>
               <div className="form-control w-full">
-                <label className="input input-bordered flex items-center gap-2 text-blue-300 text-sm md:text-base">
+                <label className="input input-bordered flex items-center gap-2 text-blue-300 text-xs md:text-sm lg:text-base">
                   Photo URL :
                   <input
                     name="image"
@@ -176,9 +179,9 @@ const MyFoodCard = ({ food }) => {
                 </label>
               </div>
             </div>
-            <div className="flex flex-col lg:flex-row gap-10 w-full my-8">
+            <div className="flex flex-col lg:flex-row gap-3 md:gap-5 lg:gap-10 w-full ">
               <div className="form-control w-full">
-                <label className="input input-bordered flex items-center gap-2 text-blue-300 text-sm md:text-base">
+                <label className="input input-bordered flex items-center gap-2 text-blue-300 text-xs md:text-sm lg:text-base">
                   Category:
                   <input
                     name="category"
@@ -194,7 +197,7 @@ const MyFoodCard = ({ food }) => {
                 </label>
               </div>
               <div className="form-control w-full">
-                <label className="input input-bordered flex items-center gap-2 text-blue-300 text-sm md:text-base">
+                <label className="input input-bordered flex items-center gap-2 text-blue-300 text-xs md:text-sm lg:text-base">
                   Origin :
                   <input
                     name="origin"
@@ -211,10 +214,10 @@ const MyFoodCard = ({ food }) => {
               </div>
             </div>
 
-            <div className="flex flex-col lg:flex-row gap-10 w-full my-8">
-              <div className="w-full">
-                <div className="form-control w-full mb-8">
-                  <label className="input input-bordered flex items-center gap-2 text-blue-300 text-sm md:text-base">
+            <div className="flex flex-col lg:flex-row gap-3 md:gap-5 lg:gap-10 w-full ">
+              <div className="w-full space-y-3 md:space-y-5 lg:space-y-10">
+                <div className="form-control w-full ">
+                  <label className="input input-bordered flex items-center gap-2 text-blue-300 text-xs md:text-sm lg:text-base">
                     Made By :
                     <input
                       name="made_by"
@@ -231,9 +234,9 @@ const MyFoodCard = ({ food }) => {
                     )}
                   </label>
                 </div>
-                <div className="flex gap-10">
+                <div className="flex flex-col md:flex-row gap-3 md:gap-5 lg:gap-10">
                   <div className="form-control w-full ">
-                    <label className="input input-bordered flex items-center gap-2 text-blue-300 text-sm md:text-base">
+                    <label className="input input-bordered flex items-center gap-2 text-blue-300 text-xs md:text-sm lg:text-base">
                       Price :
                       <input
                         name="price"
@@ -253,7 +256,7 @@ const MyFoodCard = ({ food }) => {
                     </label>
                   </div>
                   <div className="form-control w-full">
-                    <label className="input input-bordered flex items-center gap-2 text-blue-300 text-sm md:text-base">
+                    <label className="input input-bordered flex items-center gap-2 text-blue-300 text-xs md:text-sm lg:text-base">
                       Quantity :
                       <input
                         name="quantity"
@@ -274,13 +277,13 @@ const MyFoodCard = ({ food }) => {
                   </div>
                 </div>
               </div>
-              <div className="form-control w-full mb-8">
-                <label className="textarea textarea-bordered textarea-ghost flex  gap-2 text-blue-300 text-sm md:text-base">
+              <div className="form-control w-full ">
+                <label className="textarea textarea-bordered textarea-ghost flex  gap-2 text-blue-300 text-xs md:text-sm lg:text-base">
                   Description :
                   <textarea
                     name="details"
                     type="text"
-                    className="grow h-28 rounded-xl px-2 bg-transparent focus:outline-none text-gray-400"
+                    className="grow h-12 md:h-20 lg:h-28 rounded-xl px-2 bg-transparent focus:outline-none text-gray-400"
                     placeholder="Enter short description"
                     defaultValue={details}
                     {...register("details", { required: true })}
@@ -293,7 +296,7 @@ const MyFoodCard = ({ food }) => {
             </div>
             <input
               type="submit"
-              className="btn btn-block bg-green-500 text-white text-base md:text-lg"
+              className="btn btn-sm md:btn-md btn-block bg-green-500 text-white text-base md:text-lg"
               value="Update Item"
             />
           </form>
