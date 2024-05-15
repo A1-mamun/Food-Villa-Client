@@ -27,7 +27,7 @@ const AllFoodItem = () => {
         }}
       >
         <div className="h-full flex justify-center items-center bg-gradient-to-t from-[#1b1820e5]  to-[#150B2B22] rounded-lg">
-          <h2 className="text-2xl md:text-3xl lg:text-5xl font-bold text-white">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white">
             All Foods Here
           </h2>
         </div>
