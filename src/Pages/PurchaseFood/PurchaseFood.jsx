@@ -18,12 +18,16 @@ const PurchaseFood = () => {
   const [date, setDate] = useState(getDate());
 
   const food = useLoaderData();
-  const { name, image, price, quantity, category, made_by } = food;
+  const { name, image, price, quantity, category, made_by, adder_email } = food;
 
   const handlePurchase = (e) => {
     e.preventDefault();
     if (!quantity || quantity < parseInt(e.target.quantity.value)) {
       toast.error("Item Not available");
+      return;
+    }
+    if (adder_email === user?.email) {
+      toast.error("You can not purchase your own food");
       return;
     }
     const food = {
