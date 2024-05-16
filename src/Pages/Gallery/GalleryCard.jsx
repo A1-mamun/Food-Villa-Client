@@ -1,9 +1,9 @@
 const GalleryCard = ({ feedBack }) => {
   const { image, feedback_provider, feedback } = feedBack;
   return (
-    <div className="relative group">
+    <div className="relative group ">
       <div
-        className="h-60 rounded-lg"
+        className="h-60 rounded-lg w-full"
         style={{
           background: `url('${image}')`,
           backgroundSize: "cover",

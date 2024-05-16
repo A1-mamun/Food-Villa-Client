@@ -72,15 +72,21 @@ const Gallery = () => {
           </h2>
         </div>
       </div>
-      <div className="my-8 md:my-10 lg:my-14 container mx-auto text-center">
+      <div className="my-8 md:my-10 lg:my-14 container mx-auto  text-center">
         <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-5 md:mb-8 lg:mb-14">
           Customer Review
         </h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-10">
-          {feedBacks.map((feedBack) => (
-            <GalleryCard key={feedBack._id} feedBack={feedBack}></GalleryCard>
-          ))}
-        </div>
+
+        {feedBacks.length ? (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-10">
+            {feedBacks.map((feedBack) => (
+              <GalleryCard key={feedBack._id} feedBack={feedBack}></GalleryCard>
+            ))}
+          </div>
+        ) : (
+          <span className="loading loading-dots loading-lg my-20 "></span>
+        )}
+
         <button onClick={openModal} className="btn btn-primary btn-sm mt-10">
           Add Feedback
         </button>

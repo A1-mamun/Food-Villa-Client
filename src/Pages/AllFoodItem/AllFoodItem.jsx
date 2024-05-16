@@ -60,11 +60,16 @@ const AllFoodItem = () => {
             <button className="btn btn-sm btn-primary"> search</button>
           </label>
         </form>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-10">
-          {foods.map((food) => (
-            <FoodCard key={food._id} food={food}></FoodCard>
-          ))}
-        </div>
+
+        {foods.length ? (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-10">
+            {foods.map((food) => (
+              <FoodCard key={food._id} food={food}></FoodCard>
+            ))}
+          </div>
+        ) : (
+          <span className="loading loading-dots loading-lg mt-20"></span>
+        )}
       </div>
     </div>
   );
