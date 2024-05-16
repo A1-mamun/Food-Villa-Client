@@ -18,7 +18,8 @@ const PurchaseFood = () => {
   const [date, setDate] = useState(getDate());
 
   const food = useLoaderData();
-  const { name, image, price, quantity, category, made_by, adder_email } = food;
+  const { name, image, price, quantity, category, made_by, adder_email, _id } =
+    food;
 
   const handlePurchase = (e) => {
     e.preventDefault();
@@ -34,12 +35,13 @@ const PurchaseFood = () => {
       image,
       name,
       price,
-      quantity,
+      quantity: parseInt(e.target.quantity.value),
       category,
       date,
       made_by,
       Buyer_name: user?.displayName,
       Buyer_email: user?.email,
+      foodId: _id,
     };
     axios
       .post(`${import.meta.env.VITE_API_URL}/purchase`, food, {
@@ -51,7 +53,6 @@ const PurchaseFood = () => {
         const data = res.data;
         if (data?.insertedId) {
           toast.success("You purchased successfully");
-          // console.log("successfull");
         }
       })
       .catch((error) => {

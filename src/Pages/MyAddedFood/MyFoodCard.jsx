@@ -77,7 +77,7 @@ const MyFoodCard = ({ food }) => {
       <td className="p-3 text-xs md:text-sm lg:text-base">
         <p>{quantity}</p>
       </td>
-      <td className="p-3 hidden md:block text-xs md:text-sm lg:text-base">
+      <td className="p-3 hidden  md:table-cell text-xs md:text-sm lg:text-base">
         {purchase_count}
       </td>
       <td className="p-3 text-right text-xs md:text-sm lg:text-base">

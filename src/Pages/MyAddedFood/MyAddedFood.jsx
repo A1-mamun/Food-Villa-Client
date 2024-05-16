@@ -46,7 +46,7 @@ const MyAddedFood = () => {
               <th className="p-3 text-xs md:text-sm lg:text-base">Name</th>
               <th className="p-3 text-xs md:text-sm lg:text-base">Category</th>
               <th className="p-3 text-xs md:text-sm lg:text-base">Stock</th>
-              <th className="p-3 hidden md:block text-xs md:text-sm lg:text-base">
+              <th className="p-3 hidden md:table-cell text-xs md:text-sm lg:text-base">
                 Sell
               </th>
               <th className="p-3 text-right text-xs md:text-sm lg:text-base">
