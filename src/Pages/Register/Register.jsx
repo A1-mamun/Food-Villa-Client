@@ -4,6 +4,7 @@ import { IoEyeOffOutline, IoEyeOutline } from "react-icons/io5";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../Providers/AuthProvider";
 import toast from "react-hot-toast";
+import axios from "axios";
 
 const Register = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -33,17 +34,26 @@ const Register = () => {
       return;
     }
 
+    console.log(email);
     // User Register
     createUser(email, password)
       .then((result) => {
-        toast.success("User created successfully");
-        // console.log("succesfully");
         profileUpdate(name, photo)
           .then(() => {
-            setUser({ ...user, photoURL: photo, displayName: name });
-            toast.success("profile updated successfully");
-            // console.log("profile update");
-            console.log(result.user);
+            setUser({ ...result?.user, photoURL: photo, displayName: name });
+            const loggedInUser = result.user;
+            const user = { email: loggedInUser?.email };
+            axios
+              .post(`${import.meta.env.VITE_API_URL}/jwt`, user, {
+                withCredentials: true,
+              })
+              .then((res) => {
+                if (res.data.success) {
+                  // navigate after sign in
+                  navigate(location?.state ? location.state : "/");
+                }
+              });
+            toast.success("User created successfully");
           })
           .catch((error) => toast.error(error));
         navigate("/");

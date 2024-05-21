@@ -10,7 +10,8 @@ const MyPurchasedFood = () => {
   useEffect(() => {
     const getData = async () => {
       const { data } = await axios(
-        `${import.meta.env.VITE_API_URL}/myPurchasedFood/${user?.email}`
+        `${import.meta.env.VITE_API_URL}/myPurchasedFood?email=${user?.email}`,
+        { withCredentials: true }
       );
       setMyPurchase(data);
     };

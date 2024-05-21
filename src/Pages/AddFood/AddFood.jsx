@@ -160,7 +160,7 @@ const AddFood = () => {
                   name="made_by"
                   type="text"
                   className="grow text-gray-400"
-                  placeholder="Enter origin name"
+                  placeholder="Enter maker name"
                   {...register("made_by", { required: true })}
                 />
                 {errors.made_by && (

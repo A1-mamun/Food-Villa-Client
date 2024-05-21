@@ -23,6 +23,7 @@ const PurchaseFood = () => {
 
   const handlePurchase = (e) => {
     e.preventDefault();
+    console.log(user);
     if (!quantity || quantity < parseInt(e.target.quantity.value)) {
       toast.error("Item Not available");
       return;

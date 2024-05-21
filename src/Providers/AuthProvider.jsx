@@ -12,6 +12,7 @@ import {
 } from "firebase/auth";
 import { createContext, useEffect, useState } from "react";
 import app from "../firebase/firebase.config";
+import axios from "axios";
 
 export const AuthContext = createContext(null);
 const auth = getAuth(app);
@@ -58,6 +59,11 @@ const AuthProvider = ({ children }) => {
   //   sign out user
   const logOut = () => {
     setLoading(true);
+    axios(`${import.meta.env.VITE_API_URL}/logOut`, {
+      withCredentials: true,
+    }).then((res) => {
+      console.log(res.data);
+    });
     return signOut(auth);
   };
 
@@ -70,7 +76,7 @@ const AuthProvider = ({ children }) => {
     return () => {
       return unSubscribe();
     };
-  }, []);
+  }, [user]);
 
   const authInfo = {
     user,

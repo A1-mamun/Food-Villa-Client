@@ -6,6 +6,7 @@ import { FcGoogle } from "react-icons/fc";
 import { IoEyeOffOutline, IoEyeOutline } from "react-icons/io5";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../Providers/AuthProvider";
+import axios from "axios";
 
 const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -25,10 +26,19 @@ const Login = () => {
     // log in
     signIn(email, password)
       .then((result) => {
-        console.log(result.user);
-
-        // navigate after sign in
-        navigate(location?.state ? location.state : "/");
+        const loggedInUser = result.user;
+        console.log(loggedInUser);
+        const user = { email };
+        axios
+          .post(`${import.meta.env.VITE_API_URL}/jwt`, user, {
+            withCredentials: true,
+          })
+          .then((res) => {
+            if (res.data.success) {
+              // navigate after sign in
+              navigate(location?.state ? location.state : "/");
+            }
+          });
 
         toast.success("Log in successfully");
       })
@@ -40,27 +50,26 @@ const Login = () => {
   };
 
   // Google sign in
-  // const handleLogInWithGoogle = (e) => {
-  //   e.preventDefault();
-  //   signInGoogle()
-  //     .then((result) => {
-  //       console.log(result.user);
+  const handleLogInWithGoogle = (e) => {
+    e.preventDefault();
+    signInGoogle()
+      .then((result) => {
+        const loggedInUser = result.user;
+        const user = { email: loggedInUser?.email };
+        axios
+          .post(`${import.meta.env.VITE_API_URL}/jwt`, user, {
+            withCredentials: true,
+          })
+          .then((res) => {
+            if (res.data.success) {
+              // navigate after sign in
+              navigate(location?.state ? location.state : "/");
+            }
+          });
 
-  //       // navigate after sign in
-  //       navigate(location?.state ? location.state : "/");
-  //       toast.success("Log in successfully");
-  //     })
-  //     .catch((error) => toast.error(error?.message));
-  // };
-
-  const handleLogInWithGoogle = async () => {
-    try {
-      await signInGoogle();
-      toast.success("successfull");
-      navigate(location?.state ? location.state : "/");
-    } catch (error) {
-      toast.error(error.message);
-    }
+        toast.success("Log in successfully");
+      })
+      .catch((error) => toast.error(error?.message));
   };
 
   // Github sign in
@@ -68,9 +77,19 @@ const Login = () => {
     e.preventDefault();
     signInGithub()
       .then((result) => {
-        console.log(result.user);
-        // navigate after sign in
-        navigate(location?.state ? location.state : "/");
+        const loggedInUser = result.user;
+        const user = { email: loggedInUser?.email };
+        axios
+          .post(`${import.meta.env.VITE_API_URL}/jwt`, user, {
+            withCredentials: true,
+          })
+          .then((res) => {
+            if (res.data.success) {
+              // navigate after sign in
+              navigate(location?.state ? location.state : "/");
+            }
+          });
+
         toast.success("Log in successfully");
       })
       .catch((error) => toast.error(error?.message));
