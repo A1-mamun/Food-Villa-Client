@@ -1,6 +1,11 @@
-import toast, { Toaster } from "react-hot-toast";
-import { useContext, useState } from "react";
-import { useForm } from "react-hook-form";
+import toast from "react-hot-toast";
+import {
+  loadCaptchaEnginge,
+  LoadCanvasTemplate,
+  LoadCanvasTemplateNoReload,
+  validateCaptcha,
+} from "react-simple-captcha";
+import { useContext, useEffect, useRef, useState } from "react";
 import { FaGithub } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
 import { IoEyeOffOutline, IoEyeOutline } from "react-icons/io5";
@@ -10,18 +15,31 @@ import axios from "axios";
 
 const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
+  const [disabled, setDisabled] = useState(true);
   const { signIn, signInGoogle, signInGithub } = useContext(AuthContext);
+  const captchaRef = useRef(null);
+
+  useEffect(() => {
+    loadCaptchaEnginge(6);
+  }, []);
 
   const location = useLocation();
   const navigate = useNavigate();
 
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm();
-  const onSubmit = (data) => {
-    const { email, password } = data;
+  const handleValidedCaptcha = () => {
+    const userCaptcha = captchaRef.current.value;
+    if (validateCaptcha(userCaptcha)) {
+      setDisabled(false);
+    } else {
+      setDisabled(true);
+    }
+  };
+
+  const handleLogin = (event) => {
+    event.preventDefault();
+    const form = event.target;
+    const email = form.email.value;
+    const password = form.password.value;
 
     // log in
     signIn(email, password)
@@ -99,10 +117,7 @@ const Login = () => {
       <div className="hero-content">
         <div className="card shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
           <h2 className="text-3xl text-center pt-5">Login your account</h2>
-          <form
-            onSubmit={handleSubmit(onSubmit)}
-            className="card-body pb-0 pt-3"
-          >
+          <form onSubmit={handleLogin} className="card-body pb-0 pt-3">
             <div className="form-control">
               <label className="label">
                 <span className="label-text">Email</span>
@@ -112,11 +127,7 @@ const Login = () => {
                 name="email"
                 placeholder="Enter your email address"
                 className="input input-bordered"
-                {...register("email", { required: true })}
               />
-              {errors.email && (
-                <span className="text-red-700">This field is required</span>
-              )}
             </div>
             <div className="form-control relative">
               <label className="label">
@@ -127,11 +138,8 @@ const Login = () => {
                 name="password"
                 placeholder="Enter your password"
                 className="input input-bordered"
-                {...register("password", { required: true })}
               />
-              {errors.password && (
-                <span className="text-red-700">This field is required</span>
-              )}
+
               <span
                 onClick={() => setShowPassword(!showPassword)}
                 className="absolute top-[52px] right-4"
@@ -144,9 +152,31 @@ const Login = () => {
                 </a>
               </label>
             </div>
-            <div className="form-control">
-              <button className="btn btn-primary">Login</button>
+            <div className="form-control ">
+              <label className="label">
+                <LoadCanvasTemplate />
+              </label>
+              <input
+                type="text"
+                name="captcha"
+                ref={captchaRef}
+                placeholder="Type the above captcha"
+                className="input input-bordered"
+              />
+
+              <button
+                onClick={handleValidedCaptcha}
+                className="btn btn-xs mt-2 btn-outline"
+              >
+                Valided Captcha
+              </button>
             </div>
+            <input
+              disabled={disabled}
+              className="btn btn-primary"
+              type="submit"
+              value="Login"
+            />
           </form>
 
           <div className="card-body pt-2">

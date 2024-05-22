@@ -21,20 +21,6 @@ const Register = () => {
   //   register form submit
   const onSubmit = (data) => {
     const { name, photo, email, password } = data;
-
-    // password validation
-    if (password.length < 6) {
-      toast.error("password should be at least 6 characters");
-      return;
-    } else if (!/^(?=.*[A-Z])/.test(password)) {
-      toast.error("password should have at least one Uppercase letter");
-      return;
-    } else if (!/^(?=.*[a-z])/.test(password)) {
-      toast.error("password should have at least one Lowercase letter");
-      return;
-    }
-
-    console.log(email);
     // User Register
     createUser(email, password)
       .then((result) => {
@@ -124,10 +110,31 @@ const Register = () => {
                 name="password"
                 placeholder="Enter your password"
                 className="input input-bordered"
-                {...register("password", { required: true })}
+                {...register("password", {
+                  required: true,
+                  minLength: 6,
+                  maxLength: 20,
+                  pattern: /(?=.*[A-Z])(?=.*[a-z])(?=.*[!@#$&*])(?=.*[0-9])/,
+                })}
               />
-              {errors.password && (
+              {errors.password?.type == "required" && (
                 <span className="text-red-700">This field is required</span>
+              )}
+              {errors.password?.type == "minLength" && (
+                <span className="text-red-700">
+                  Password must be 6 characters
+                </span>
+              )}
+              {errors.password?.type == "pattern" && (
+                <span className="text-red-700">
+                  Must have one uppercase, one lowercase,one special character
+                  and one number
+                </span>
+              )}
+              {errors.password?.type == "maxLength" && (
+                <span className="text-red-700">
+                  Password must be less than 20 characters
+                </span>
               )}
               <span
                 onClick={() => setShowPassword(!showPassword)}
