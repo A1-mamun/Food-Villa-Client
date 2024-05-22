@@ -5,6 +5,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../Providers/AuthProvider";
 import toast from "react-hot-toast";
 import axios from "axios";
+import { Helmet } from "react-helmet";
 
 const Register = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -15,6 +16,7 @@ const Register = () => {
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm();
 
@@ -39,6 +41,7 @@ const Register = () => {
                   navigate(location?.state ? location.state : "/");
                 }
               });
+            reset();
             toast.success("User created successfully");
           })
           .catch((error) => toast.error(error));
@@ -52,6 +55,9 @@ const Register = () => {
   };
   return (
     <div className="hero h-full py-10 rounded-xl bg-base-200 mt-16">
+      <Helmet>
+        <title>FoodVilla | Register</title>
+      </Helmet>
       <div className="hero-content ">
         <div className="card shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
           <h2 className="text-3xl text-center pt-5">Register your account</h2>

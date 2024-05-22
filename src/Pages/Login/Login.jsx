@@ -12,6 +12,7 @@ import { IoEyeOffOutline, IoEyeOutline } from "react-icons/io5";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../Providers/AuthProvider";
 import axios from "axios";
+import { Helmet } from "react-helmet";
 
 const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -26,12 +27,16 @@ const Login = () => {
   const location = useLocation();
   const navigate = useNavigate();
 
-  const handleValidedCaptcha = () => {
-    const userCaptcha = captchaRef.current.value;
-    if (validateCaptcha(userCaptcha)) {
-      setDisabled(false);
-    } else {
-      setDisabled(true);
+  const handleValidedCaptcha = (e) => {
+    e.preventDefault();
+    const userCaptcha = e.target.value;
+    console.log(userCaptcha);
+    if (userCaptcha.length === 6) {
+      if (validateCaptcha(userCaptcha)) {
+        setDisabled(false);
+      } else {
+        setDisabled(true);
+      }
     }
   };
 
@@ -114,6 +119,9 @@ const Login = () => {
   };
   return (
     <div className="hero h-full bg-base-200 py-10 rounded-xl mt-16">
+      <Helmet>
+        <title>FoodVilla | Login</title>
+      </Helmet>
       <div className="hero-content">
         <div className="card shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
           <h2 className="text-3xl text-center pt-5">Login your account</h2>
@@ -157,19 +165,13 @@ const Login = () => {
                 <LoadCanvasTemplate />
               </label>
               <input
+                onChange={handleValidedCaptcha}
                 type="text"
                 name="captcha"
                 ref={captchaRef}
                 placeholder="Type the above captcha"
                 className="input input-bordered"
               />
-
-              <button
-                onClick={handleValidedCaptcha}
-                className="btn btn-xs mt-2 btn-outline"
-              >
-                Valided Captcha
-              </button>
             </div>
             <input
               disabled={disabled}
