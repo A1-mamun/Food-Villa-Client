@@ -1,11 +1,11 @@
-import { useContext, useEffect, useState } from "react";
-import { AuthContext } from "../../Providers/AuthProvider";
+import { useEffect, useState } from "react";
 import axios from "axios";
 import MyFoodCard from "./MyFoodCard";
 import { Helmet } from "react-helmet";
+import UseAuth from "../../Hooks/UseAuth";
 
 const MyAddedFood = () => {
-  const { user } = useContext(AuthContext);
+  const { user } = UseAuth();
   const [myFoods, setMyFoods] = useState([]);
 
   console.log(user);

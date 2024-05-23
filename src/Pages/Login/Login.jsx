@@ -2,22 +2,21 @@ import toast from "react-hot-toast";
 import {
   loadCaptchaEnginge,
   LoadCanvasTemplate,
-  LoadCanvasTemplateNoReload,
   validateCaptcha,
 } from "react-simple-captcha";
-import { useContext, useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { FaGithub } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
 import { IoEyeOffOutline, IoEyeOutline } from "react-icons/io5";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { AuthContext } from "../../Providers/AuthProvider";
 import axios from "axios";
 import { Helmet } from "react-helmet";
+import UseAuth from "../../Hooks/UseAuth";
 
 const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [disabled, setDisabled] = useState(true);
-  const { signIn, signInGoogle, signInGithub } = useContext(AuthContext);
+  const { signIn, signInGoogle, signInGithub } = UseAuth();
   const captchaRef = useRef(null);
 
   useEffect(() => {

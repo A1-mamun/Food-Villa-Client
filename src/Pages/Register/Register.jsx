@@ -1,15 +1,15 @@
-import { useContext, useState } from "react";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { IoEyeOffOutline, IoEyeOutline } from "react-icons/io5";
 import { Link, useNavigate } from "react-router-dom";
-import { AuthContext } from "../../Providers/AuthProvider";
 import toast from "react-hot-toast";
 import axios from "axios";
 import { Helmet } from "react-helmet";
+import UseAuth from "../../Hooks/UseAuth";
 
 const Register = () => {
   const [showPassword, setShowPassword] = useState(false);
-  const { createUser, profileUpdate, setUser, user } = useContext(AuthContext);
+  const { createUser, profileUpdate, setUser } = UseAuth();
 
   const navigate = useNavigate();
 

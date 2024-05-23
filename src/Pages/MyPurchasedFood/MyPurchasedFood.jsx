@@ -1,11 +1,11 @@
-import { useContext, useEffect, useState } from "react";
-import { AuthContext } from "../../Providers/AuthProvider";
+import { useEffect, useState } from "react";
 import axios from "axios";
 import MyPurchaseCard from "./MyPurchaseCard";
 import { Helmet } from "react-helmet";
+import UseAuth from "../../Hooks/UseAuth";
 
 const MyPurchasedFood = () => {
-  const { user } = useContext(AuthContext);
+  const { user } = UseAuth();
   const [myPurchase, setMyPurchase] = useState([]);
   useEffect(() => {
     const getData = async () => {

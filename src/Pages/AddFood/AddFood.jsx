@@ -1,12 +1,11 @@
-import { useContext } from "react";
 import { useForm } from "react-hook-form";
-import { AuthContext } from "../../Providers/AuthProvider";
 import axios from "axios";
 import toast from "react-hot-toast";
 import { Helmet } from "react-helmet";
+import UseAuth from "../../Hooks/UseAuth";
 
 const AddFood = () => {
-  const { user } = useContext(AuthContext);
+  const { user } = UseAuth();
   const {
     register,
     handleSubmit,

@@ -1,12 +1,12 @@
-import { useContext, useState } from "react";
+import { useState } from "react";
 import { useLoaderData } from "react-router-dom";
-import { AuthContext } from "../../Providers/AuthProvider";
 import axios from "axios";
 import toast, { Toaster } from "react-hot-toast";
 import { Helmet } from "react-helmet";
+import UseAuth from "../../Hooks/UseAuth";
 
 const PurchaseFood = () => {
-  const { user } = useContext(AuthContext);
+  const { user } = UseAuth();
   const getDate = () => {
     const today = new Date();
     const month = today.getMonth() + 1;
