@@ -1,22 +1,24 @@
 import { useEffect, useState } from "react";
-import axios from "axios";
 import MyPurchaseCard from "./MyPurchaseCard";
 import { Helmet } from "react-helmet";
-import UseAuth from "../../Hooks/UseAuth";
+import useAuth from "../../Hooks/useAuth";
+import useAxiosSecure from "../../Hooks/useAxiosSecure";
 
 const MyPurchasedFood = () => {
-  const { user } = UseAuth();
+  const { user } = useAuth();
   const [myPurchase, setMyPurchase] = useState([]);
+  const axiosSecure = useAxiosSecure();
+
   useEffect(() => {
     const getData = async () => {
-      const { data } = await axios(
-        `${import.meta.env.VITE_API_URL}/myPurchasedFood?email=${user?.email}`,
+      const { data } = await axiosSecure(
+        `/myPurchasedFood?email=${user?.email}`,
         { withCredentials: true }
       );
       setMyPurchase(data);
     };
     getData();
-  }, [user]);
+  }, [user, axiosSecure]);
   return (
     <div className="container p-2 mx-auto sm:p-4 dark:text-gray-800 mt-20 min-h-[calc(100vh-355px)]">
       <Helmet>

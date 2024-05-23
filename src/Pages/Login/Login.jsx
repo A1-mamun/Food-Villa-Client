@@ -9,16 +9,16 @@ import { FaGithub } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
 import { IoEyeOffOutline, IoEyeOutline } from "react-icons/io5";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import axios from "axios";
 import { Helmet } from "react-helmet";
-import UseAuth from "../../Hooks/UseAuth";
+import useAuth from "../../Hooks/useAuth";
+import useAxiosSecure from "../../Hooks/useAxiosSecure";
 
 const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [disabled, setDisabled] = useState(true);
-  const { signIn, signInGoogle, signInGithub } = UseAuth();
+  const { signIn, signInGoogle, signInGithub } = useAuth();
   const captchaRef = useRef(null);
-
+  const axiosSecure = useAxiosSecure();
   useEffect(() => {
     loadCaptchaEnginge(6);
   }, []);
@@ -51,8 +51,8 @@ const Login = () => {
         const loggedInUser = result.user;
         console.log(loggedInUser);
         const user = { email };
-        axios
-          .post(`${import.meta.env.VITE_API_URL}/jwt`, user, {
+        axiosSecure
+          .post("/jwt", user, {
             withCredentials: true,
           })
           .then((res) => {
@@ -78,8 +78,8 @@ const Login = () => {
       .then((result) => {
         const loggedInUser = result.user;
         const user = { email: loggedInUser?.email };
-        axios
-          .post(`${import.meta.env.VITE_API_URL}/jwt`, user, {
+        axiosSecure
+          .post("/jwt", user, {
             withCredentials: true,
           })
           .then((res) => {
@@ -101,8 +101,8 @@ const Login = () => {
       .then((result) => {
         const loggedInUser = result.user;
         const user = { email: loggedInUser?.email };
-        axios
-          .post(`${import.meta.env.VITE_API_URL}/jwt`, user, {
+        axiosSecure
+          .post("/jwt", user, {
             withCredentials: true,
           })
           .then((res) => {

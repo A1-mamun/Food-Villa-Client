@@ -1,24 +1,24 @@
 import { useEffect, useState } from "react";
-import axios from "axios";
 import MyFoodCard from "./MyFoodCard";
 import { Helmet } from "react-helmet";
-import UseAuth from "../../Hooks/UseAuth";
+import useAuth from "../../Hooks/useAuth";
+import useAxiosSecure from "../../Hooks/useAxiosSecure";
 
 const MyAddedFood = () => {
-  const { user } = UseAuth();
+  const { user } = useAuth();
   const [myFoods, setMyFoods] = useState([]);
+  const axiosSecure = useAxiosSecure();
 
   console.log(user);
   useEffect(() => {
     const getData = async () => {
-      const { data } = await axios(
-        `${import.meta.env.VITE_API_URL}/myFood?email=${user?.email}`,
-        { withCredentials: true }
-      );
+      const { data } = await axiosSecure(`/myFood?email=${user?.email}`, {
+        withCredentials: true,
+      });
       setMyFoods(data);
     };
     getData();
-  }, [user]);
+  }, [user, axiosSecure]);
 
   // console.log(myFoods);
   return (

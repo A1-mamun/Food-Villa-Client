@@ -1,11 +1,12 @@
 import { useForm } from "react-hook-form";
-import axios from "axios";
 import toast from "react-hot-toast";
 import { Helmet } from "react-helmet";
-import UseAuth from "../../Hooks/UseAuth";
+import useAuth from "../../Hooks/useAuth";
+import useAxiosSecure from "../../Hooks/useAxiosSecure";
 
 const AddFood = () => {
-  const { user } = UseAuth();
+  const { user } = useAuth();
+  const axiosSecure = useAxiosSecure();
   const {
     register,
     handleSubmit,
@@ -20,8 +21,8 @@ const AddFood = () => {
       purchase_count: 0,
       quantity: parseInt(data.quantity),
     };
-    axios
-      .post(`${import.meta.env.VITE_API_URL}/added`, newData, {
+    axiosSecure
+      .post("/added", newData, {
         headers: {
           "content-type": "application/json",
         },

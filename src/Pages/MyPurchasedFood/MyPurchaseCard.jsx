@@ -1,9 +1,11 @@
-import axios from "axios";
 import toast from "react-hot-toast";
 import Swal from "sweetalert2";
+import PropTypes from "prop-types";
+import useAxiosSecure from "../../Hooks/useAxiosSecure";
 
 const MyPurchaseCard = ({ food, myPurchase, setMyPurchase }) => {
   const { _id, image, name, price, made_by, date, category } = food;
+  const axiosSecure = useAxiosSecure();
 
   const handleDelete = (id) => {
     Swal.fire({
@@ -16,8 +18,8 @@ const MyPurchaseCard = ({ food, myPurchase, setMyPurchase }) => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        axios
-          .delete(`${import.meta.env.VITE_API_URL}/delete/${id}`)
+        axiosSecure
+          .delete(`/delete/${id}`)
           .then((res) => {
             console.log(res.data);
             if (res.data?.deletedCount) {
@@ -62,4 +64,9 @@ const MyPurchaseCard = ({ food, myPurchase, setMyPurchase }) => {
   );
 };
 
+MyPurchaseCard.propTypes = {
+  food: PropTypes.object,
+  myPurchase: PropTypes.object,
+  setMyPurchase: PropTypes.func,
+};
 export default MyPurchaseCard;

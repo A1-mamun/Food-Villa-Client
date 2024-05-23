@@ -2,19 +2,20 @@ import { useEffect, useState } from "react";
 import Banner from "./Banner";
 import FoodCard from "../Shared/FoodCard/FoodCard";
 import { Link } from "react-router-dom";
-import axios from "axios";
 import { Helmet } from "react-helmet";
+import useAxiosSecure from "../../Hooks/useAxiosSecure";
 
 const Home = () => {
   const [foods, setFoods] = useState([]);
+  const axiosSecure = useAxiosSecure();
 
   useEffect(() => {
     const getData = async () => {
-      const { data } = await axios(`${import.meta.env.VITE_API_URL}/top-foods`);
+      const { data } = await axiosSecure("/top-foods");
       setFoods(data);
     };
     getData();
-  }, []);
+  }, [axiosSecure]);
   return (
     <div className="px-2 md:px-4">
       <Helmet>

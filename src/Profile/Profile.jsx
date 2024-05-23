@@ -1,9 +1,9 @@
 import { FaFacebook, FaGithub, FaLinkedin } from "react-icons/fa";
 import { Helmet } from "react-helmet";
-import UseAuth from "../Hooks/UseAuth";
+import useAuth from "../Hooks/useAuth";
 
 const Profile = () => {
-  const { user } = UseAuth();
+  const { user } = useAuth();
   return (
     <div className="min-h-[calc(100vh-275px)] flex justify-center items-center">
       <Helmet>

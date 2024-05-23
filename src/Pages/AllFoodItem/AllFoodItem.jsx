@@ -1,22 +1,21 @@
 import { useEffect, useState } from "react";
 import bgImage from "../../assets/bg-img-1.jpg";
 import FoodCard from "../Shared/FoodCard/FoodCard";
-import axios from "axios";
 import { Helmet } from "react-helmet";
+import useAxiosSecure from "../../Hooks/useAxiosSecure";
 
 const AllFoodItem = () => {
   const [foods, setFoods] = useState([]);
   const [search, setSearch] = useState("");
+  const axiosSecure = useAxiosSecure();
 
   useEffect(() => {
     const getData = async () => {
-      const { data } = await axios(
-        `${import.meta.env.VITE_API_URL}/foods?search=${search}`
-      );
+      const { data } = await axiosSecure(`/foods?search=${search}`);
       setFoods(data);
     };
     getData();
-  }, [search]);
+  }, [search, axiosSecure]);
 
   const handleSearch = (e) => {
     e.preventDefault();

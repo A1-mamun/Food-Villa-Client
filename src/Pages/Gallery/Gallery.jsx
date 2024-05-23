@@ -6,18 +6,20 @@ import { useForm } from "react-hook-form";
 import Modal from "react-modal";
 import toast from "react-hot-toast";
 import { Helmet } from "react-helmet";
+import useAxiosSecure from "../../Hooks/useAxiosSecure";
 
 const Gallery = () => {
   const [feedBacks, setFeedBacks] = useState([]);
   const [modalIsOpen, setIsOpen] = useState(false);
+  const axiosSecure = useAxiosSecure();
 
   useEffect(() => {
     const getData = async () => {
-      const { data } = await axios(`${import.meta.env.VITE_API_URL}/feedbacks`);
+      const { data } = await axiosSecure("/feedbacks");
       setFeedBacks(data);
     };
     getData();
-  }, [modalIsOpen]);
+  }, [modalIsOpen, axiosSecure]);
   const {
     register,
     handleSubmit,

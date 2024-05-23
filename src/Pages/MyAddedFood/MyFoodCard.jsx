@@ -1,10 +1,10 @@
-import axios from "axios";
 import PropTypes from "prop-types";
 import { useState } from "react";
 import { Helmet } from "react-helmet";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import Modal from "react-modal";
+import useAxiosSecure from "../../Hooks/useAxiosSecure";
 
 const MyFoodCard = ({ food }) => {
   const {
@@ -23,6 +23,7 @@ const MyFoodCard = ({ food }) => {
   } = food;
 
   const [modalIsOpen, setIsOpen] = useState(false);
+  const axiosSecure = useAxiosSecure();
 
   const {
     register,
@@ -35,8 +36,8 @@ const MyFoodCard = ({ food }) => {
       ...data,
       quantity: parseInt(data.quantity),
     };
-    axios
-      .put(`${import.meta.env.VITE_API_URL}/update/${_id}`, newData, {
+    axiosSecure
+      .put(`/update/${_id}`, newData, {
         headers: {
           "content-type": "application/json",
         },

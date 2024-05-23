@@ -3,13 +3,14 @@ import { useForm } from "react-hook-form";
 import { IoEyeOffOutline, IoEyeOutline } from "react-icons/io5";
 import { Link, useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
-import axios from "axios";
 import { Helmet } from "react-helmet";
-import UseAuth from "../../Hooks/UseAuth";
+import useAuth from "../../Hooks/useAuth";
+import useAxiosSecure from "../../Hooks/useAxiosSecure";
 
 const Register = () => {
   const [showPassword, setShowPassword] = useState(false);
-  const { createUser, profileUpdate, setUser } = UseAuth();
+  const { createUser, profileUpdate, setUser } = useAuth();
+  const axiosSecure = useAxiosSecure();
 
   const navigate = useNavigate();
 
@@ -31,8 +32,8 @@ const Register = () => {
             setUser({ ...result?.user, photoURL: photo, displayName: name });
             const loggedInUser = result.user;
             const user = { email: loggedInUser?.email };
-            axios
-              .post(`${import.meta.env.VITE_API_URL}/jwt`, user, {
+            axiosSecure
+              .post("/jwt", user, {
                 withCredentials: true,
               })
               .then((res) => {

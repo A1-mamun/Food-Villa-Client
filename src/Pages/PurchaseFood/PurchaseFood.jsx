@@ -1,12 +1,14 @@
 import { useState } from "react";
 import { useLoaderData } from "react-router-dom";
-import axios from "axios";
 import toast, { Toaster } from "react-hot-toast";
 import { Helmet } from "react-helmet";
-import UseAuth from "../../Hooks/UseAuth";
+import useAuth from "../../Hooks/useAuth";
+import useAxiosSecure from "../../Hooks/useAxiosSecure";
 
 const PurchaseFood = () => {
-  const { user } = UseAuth();
+  const { user } = useAuth();
+  const axiosSecure = useAxiosSecure();
+
   const getDate = () => {
     const today = new Date();
     const month = today.getMonth() + 1;
@@ -44,8 +46,8 @@ const PurchaseFood = () => {
       Buyer_email: user?.email,
       foodId: _id,
     };
-    axios
-      .post(`${import.meta.env.VITE_API_URL}/purchase`, food, {
+    axiosSecure
+      .post("/purchase", food, {
         headers: {
           "content-type": "application/json",
         },

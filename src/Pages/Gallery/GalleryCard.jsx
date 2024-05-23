@@ -1,3 +1,5 @@
+import PropTypes from "prop-types";
+
 const GalleryCard = ({ feedBack }) => {
   const { image, feedback_provider, feedback } = feedBack;
   return (
@@ -22,6 +24,9 @@ const GalleryCard = ({ feedBack }) => {
       </div>
     </div>
   );
+};
+GalleryCard.propTypes = {
+  feedBack: PropTypes.object,
 };
 
 export default GalleryCard;
