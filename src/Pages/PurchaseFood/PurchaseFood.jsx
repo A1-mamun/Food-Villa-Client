@@ -15,7 +15,7 @@ const PurchaseFood = () => {
     return `${date}-${month}-${year}`;
   };
 
-  const [date, setDate] = useState(getDate());
+  const [date] = useState(getDate());
 
   const food = useLoaderData();
   const { name, image, price, quantity, category, made_by, adder_email, _id } =

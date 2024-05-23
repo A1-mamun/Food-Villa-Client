@@ -1,5 +1,6 @@
 import { Navigate, useLocation } from "react-router-dom";
 import UseAuth from "../Hooks/UseAuth";
+import PropTypes from "prop-types";
 
 const PrivateRoute = ({ children }) => {
   const { user, loading } = UseAuth();
@@ -17,4 +18,7 @@ const PrivateRoute = ({ children }) => {
   );
 };
 
+PrivateRoute.propTypes = {
+  children: PropTypes.node,
+};
 export default PrivateRoute;
